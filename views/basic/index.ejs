@@ -1,0 +1,22 @@
+<%- include('../includes/head.ejs') %>
+<link rel="stylesheet" href="/css/product.css">
+</head>
+
+<body>
+<%- include('../includes/navigation.ejs') %>
+
+<main>
+    <div class="centered">
+        <% if(user) { %>
+            <h1>Hello <%= user.email %></h1>
+        <% } else { %>
+            <h1>Hello unknown user</h1>
+            <p>You have not registered or login yet</p>
+            <p>Login or register and lets make money</p>
+        <% } %>
+
+    </div>
+</main>
+</body>
+
+</html>

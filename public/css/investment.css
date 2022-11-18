@@ -1,0 +1,26 @@
+.investment__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.investment__list-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column;
+    margin: 0.5rem 0;
+    padding: 0.5rem;
+    border: 1px solid #00695c;
+    color: #00695c;
+}
+
+.investment__title {
+    font-size: 1.2rem;
+    text-align: center;
+}
+
+.investment__amount {
+    text-align: center;
+    margin: 1rem;
+}

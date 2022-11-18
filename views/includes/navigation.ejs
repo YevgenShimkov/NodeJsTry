@@ -1,0 +1,46 @@
+<header class="main-header">
+    <nav class="main-header__nav">
+        <ul class="main-header__item-list">
+            <li class="main-header__item">
+                <a class="<%= path === '/' ? 'active' : '' %>" href="/">Home</a>
+            </li>
+            <% if (isAuthenticated && !adminLoged) { %>
+                <li class="main-header__item">
+                    <a class="<%= path === '/my-investments' ? 'active' : '' %>" href="/my-investments">My
+                        investments</a>
+                </li>
+                <li class="main-header__item">
+                    <a class="<%= path === '/userReferrals' ? 'active' : '' %>" href="/userReferrals">My referrals</a>
+                </li>
+            <% } %>
+            <% if (isAuthenticated && adminLoged) { %>
+                <li class="main-header__item">
+                    <a class="<%= path === '/admin/all-investors' ? 'active' : '' %>" href="/admin/all-investors">All
+                        investors
+                    </a>
+                </li>
+                <li class="main-header__item">
+                    <a class="<%= path === '/admin/capital' ? 'active' : '' %>" href="/admin/capital">Capital WWW
+                    </a>
+                </li>
+            <% } %>
+
+        </ul>
+        <ul class="main-header__item-list">
+            <% if (!isAuthenticated) { %>
+                <li class="main-header__item">
+                    <a class="<%= path === '/login' ? 'active' : '' %>" href="/login">Login</a>
+                </li>
+                <li class="main-header__item">
+                    <a class="<%= path === '/signup' ? 'active' : '' %>" href="/signup">Signup</a>
+                </li>
+            <% } else { %>
+                <li class="main-header__item">
+                    <form action="/logout" method="post">
+                        <button type="submit">Logout</button>
+                    </form>
+                </li>
+            <% } %>
+        </ul>
+    </nav>
+</header>
