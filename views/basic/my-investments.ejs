@@ -8,24 +8,32 @@
     <% if (investment.length > 0) { %>
         <ul class="investment__list">
             <% investment.forEach(invest => { %>
-                <li class="investment__list-item">
+                <li class="investment__list-item <%if(invest.amount <0) {%> investment__list-item-red <%}%>">
                     <div class="investment__title">Order - # <%= invest._id %></div>
-                    <div class="investment__amount">Amount: $ <%= invest.amount %></div>
+                    <div class="investment__amount <%if(invest.amount <0) {%> investment__amount-red <%}%>">Amount: $ <%= invest.amount %></div>
                     <div class="">Date: <%= invest.investmentId.createdAt %></div>
                 </li>
             <% }); %>
         </ul>
-        <div class="investment__amount">Total Amount: $ <%= totalAmount %></div>
+        <div class="investment__amount">Total Amount: $ <%= totalAmountInvestment %></div>
     <% } else { %>
         <h1>Nothing there!</h1>
     <% } %>
     <% if (isAuthenticated) { %>
-        <div class="centered">
+        <div class="centered__margin">
             <form action="/add-investment" method="post">
                 <button class="btn" type="submit">Invest</button>
                 <input type="number" name="amount" id="amount" step="0.01" value="">
             </form>
         </div>
+        <% if(totalAmountInvestment > 0) { %>
+            <div class="centered__margin">
+                <form action="/withdraw-investment" method="post">
+                    <button class="btn danger" type="submit">Withdraw money</button>
+                    <input type="number" name="amount" id="amount" step="0.01" value="">
+                </form>
+            </div>
+        <% } %>
     <% } %>
 </main>
 </body>

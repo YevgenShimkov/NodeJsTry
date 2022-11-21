@@ -15,12 +15,12 @@
             <% } %>
             <% if (isAuthenticated && adminLoged) { %>
                 <li class="main-header__item">
-                    <a class="<%= path === '/admin/all-investors' ? 'active' : '' %>" href="/admin/all-investors">All
+                    <a class="<%= path === '/all-investors' ? 'active' : '' %>" href="/admin/all-investors">All
                         investors
                     </a>
                 </li>
                 <li class="main-header__item">
-                    <a class="<%= path === '/admin/capital' ? 'active' : '' %>" href="/admin/capital">Capital WWW
+                    <a class="<%= path === '/capital' ? 'active' : '' %>" href="/admin/capital">Capital WWW
                     </a>
                 </li>
             <% } %>

@@ -29,30 +29,49 @@ const userSchema = new Schema({
         }
       }
     ],
-    totalAmount: {
+    totalAmountInvestment: {
       type: Number,
       required: true,
       default: 0,
-    }
+    },
   },
 })
 
-userSchema.methods.addInvestment = function(invest) {
-  let newTotalAmount;
-  newTotalAmount = this.capital.totalAmount + invest.amount
+userSchema.methods.addInvestment = function( invest ) {
+  let newTotalAmountInvestment;
+  newTotalAmountInvestment = this.capital.totalAmountInvestment + invest.amount
   const updatedCapitalInvest = [...this.capital.investment];
 
   updatedCapitalInvest.push({
-      investmentId: invest._id,
-      amount: invest.amount
-    });
+    investmentId: invest._id,
+    amount: invest.amount
+  });
 
   const updatedCapital = {
     investment: updatedCapitalInvest,
-    totalAmount: newTotalAmount
+    totalAmountInvestment: newTotalAmountInvestment
   };
   this.capital = updatedCapital;
   return this.save();
 };
+
+userSchema.methods.updateRole = async function( role ) {
+  const updatedRoles = await [...this.role]
+  await updatedRoles.push(role)
+  this.role = updatedRoles
+  return this.save();
+};
+
+userSchema.methods.addInvestmentToAdmin = async function( invest ) {
+  let newTotalAmountInvestment;
+  const adminCapital = await this.capital.totalAmountInvestment
+  newTotalAmountInvestment = adminCapital + invest.amount
+  const updatedCapital = {
+    totalAmountInvestment: newTotalAmountInvestment
+  };
+  this.capital = updatedCapital;
+  return this.save();
+};
+
 
 module.exports = model('User', userSchema)

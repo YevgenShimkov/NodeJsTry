@@ -1,14 +1,14 @@
-// helpers function
+// util function
 // check if admin
 const Role = require("../models/role");
 
 module.exports = async ( req, searchingRole ) => {
   const role = await Role.findOne({ value: searchingRole })
-  let isSearchedRole = false
-  req.session.user && req.session.user.role.forEach(r => {
+  let isSearchedRole = false;
+  req.user && req.user.role.forEach(r => {
     if( r === role.value ) {
-      isSearchedRole = true
+      isSearchedRole = true;
     }
   })
-  return isSearchedRole
+  return isSearchedRole;
 }
